@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Good Chord Charts</title>
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  </head>
+
+  <body>
+    <h1>Songs</h1>
+
+    <ul>
+      {% for song in song_list %}
+      <li><a href="{{song.id}}">"{{song.title}}" - {{song.artist}}, {{song.album}}</a></li>
+      {% endfor %}
+    </ul>
+
+  </body>
+</html>
