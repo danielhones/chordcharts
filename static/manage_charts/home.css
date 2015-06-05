@@ -1,0 +1,13 @@
+body {
+    font-family: "Lora", serif;
+    font-size: 1.3em;
+}
+
+.main-container {
+    width: 500px;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+}

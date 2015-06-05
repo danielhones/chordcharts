@@ -3,47 +3,55 @@
 <html>
   <head>
     <!--<link rel="stylesheet" href="{% static "reset.css" %}">-->
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700|Source+Sans+Pro|Yanone+Kaffeesatz'
+	  rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet"
 	  href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="{% static "base-site.css" %}">
-    <link rel="stylesheet" href="{% static "grid.css" %}">
     <link rel="stylesheet" href="{% static "manage_charts/chordchart.css" %}">
   </head>
 
   <body>
     <div class="header">
       <h1 class="title">{{ song.title }}</h1>
+      {% if song.artist != "" %}
       <h2 class="artist">{{ song.artist }},&nbsp;</h2>
+      {% endif %}
       <h2 class="album">{{ song.album }}</h2>
     </div>
 
-    <div class="chord-chart pure-g">
+    <div class="chord-chart">
       {% autoescape off %}
 
 	{% for section in chordchart.sections %}
-	<div class="pure-u-1-1"><h4 class="section-name">{{section.section_name}}</h4></div>
-	
+      <h3 class="section-name">{{ section.section_name }}</h3>
+      <div class="section">
 	{% for measure in section.measures %}
-	<div class="pure-u-1-4 measure">
-
-	  <div class="chord-container pure-g">
-	    {% for chord in measure.chords %}
-	    <div class="pure-u-1-2 chord">
-	      {% if chord.slashnote %}
-	      <sup>{{chord.rootnote}}<sup>{{chord.quality}}</sup></sup>/<sub>{{chord.slashnote}}</sub>
-	      {% else %}
-	      {{chord.rootnote}}<sup>{{chord.quality}}</sup>
+	{% if measure.double_barline %}
+	<div class="measure double-barline">
+	{% else %}
+	<div class="measure">{% endif %}
+	  {% for chord in measure.chords %}
+	  <div class="chord">
+	    {% if chord.slashnote %}
+	    <sup>{{chord.rootnote}}<sup>{{chord.quality}}</sup></sup>/<sub>{{chord.slashnote}}</sub>
+	      {% else %}{{chord.rootnote}}<sup>{{chord.quality}}</sup>
 	      {% endif %}
-	    </div>
+	  </div><!-- end chord div -->
+	    
 	    {% endfor %}
-	  </div>
+	</div><!-- end measure div -->
+      
+	    {% endfor %}
 
-	  <div class="barline">&nbsp;</div></div>
+      </div>
 	{% endfor %}
-	{% endfor %}
+	      
 	{% endautoescape %}
+
     </div>
+    
 
   </body>
 </html>
