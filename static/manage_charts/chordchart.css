@@ -27,7 +27,7 @@
 
 .chord-chart {
     margin: auto;
-    width: 95%;
+    width: 98%;
 }
 
 .section-name {
@@ -48,7 +48,7 @@
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     font-size: 2.2em;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Droid Sans","Source Sans Pro",sans-serif;
 }
 
 .measure {
