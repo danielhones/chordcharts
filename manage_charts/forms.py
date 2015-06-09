@@ -1,5 +1,4 @@
 from django import forms
-import autocomplete_light
 from manage_charts.models import ChordChart
 
 
