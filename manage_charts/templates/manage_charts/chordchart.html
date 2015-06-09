@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static "base-site.css" %}">
     <link rel="stylesheet" href="{% static "manage_charts/chordchart.css" %}">
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>{{ song.title }}</title>
   </head>
 
   <body>
@@ -17,6 +18,14 @@
       <h2 class="artist">{{ song.artist }},&nbsp;</h2>
       {% endif %}
       <h2 class="album">{{ song.album }}</h2>
+      <br>
+      <div class="form-container">
+	<form action="" method="post" class="transpose-form pure-form">
+	  {% csrf_token %}
+	  {{ form }}
+	  <input type="submit" value="Transpose" class="pure-button" id="transpose-button">
+	</form>
+      </div>
     </div>
 
     <div class="chord-chart">
@@ -36,10 +45,10 @@
 	    <sup>{{chord.rootnote}}<sup>{{chord.quality}}</sup></sup>/<sub>{{chord.slashnote}}</sub>
 	      {% else %}{{chord.rootnote}}<sup>{{chord.quality}}</sup>
 	      {% endif %}
-	  </div><!-- end chord div -->
+	  </div>
 	    
 	    {% endfor %}
-	</div><!-- end measure div -->
+	</div>
       
 	    {% endfor %}
 

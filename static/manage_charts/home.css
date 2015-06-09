@@ -12,6 +12,10 @@ body {
     text-align: center;
 }
 
+ul.song-list {
+    list-style-type: none;
+}
+
 @media all and (max-width: 640px) {
     .main-container {
 	width: 95%;
