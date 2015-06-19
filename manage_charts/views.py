@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import ChordChart
-from chords.chords import ChordChartMaker
+from chords.chords import Song
 from django.conf import settings
-from .forms import TransposeForm
+from .forms import TransposeForm, ChordChartForm
 
 
 def home(request):
@@ -12,13 +12,17 @@ def home(request):
         }
     return render(request, 'manage_charts/home.html', context) 
 
-def make(request):
-    pass
+def edit_chart(request):
+    context = {
+        'form': ChordChartForm,
+        }
+    return render(request, 'manage_charts/edit.html', context)
+
 
 def show_chart(request, song_id):
     # TODO: fix the redundancy here. There's got to be a better way.
     song = ChordChart.objects.get(pk=song_id)
-    raw_chart = ChordChartMaker(song.plain_text)
+    raw_chart = Song(song.plain_text)
     context = {
         'song': song,
         'chordchart': raw_chart,

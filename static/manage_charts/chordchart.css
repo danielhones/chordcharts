@@ -29,6 +29,7 @@
     display: -webkit-flex;
     display: flex;
     flex: row;
+    -webkit-flex: row;
     justify-content: flex-end;
 }
 
@@ -36,7 +37,9 @@
     display: -webkit-flex;
     display: flex;
     flex: row;
+    -webkit-flex: row;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     font-size: 60%;
     margin-right: 2em;
     padding: .5em;
@@ -46,11 +49,12 @@
 #id_semitones {
     width: 4.5em;
     flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
 }
 
 #transpose-button {
     flex: 0 1 auto;
-
+    -webkit-flex: 0 1 auto;
 }
 
 .chord-chart {
@@ -72,8 +76,8 @@
 .section {
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
     font-size: 2.2em;
     font-family: "DejaVu Sans Condensed",sans-serif;
 }
@@ -86,6 +90,7 @@
     border-right: solid 3px;
     border-color: #000000;
     flex: 1;
+    -webkit-flex: 1;
 }    
 
 /*
@@ -119,6 +124,7 @@ to fit them all in a measure.  Especially for slash chords.
 				   
 .chord {
     flex: row nowrap;
+    -webkit-flex: row nowrap;
     white-space: nowrap;
     width: 50%;
 }
