@@ -16,6 +16,11 @@ ul.song-list {
     list-style-type: none;
 }
 
+#edit-link {
+    display: inline-block;
+    margin: auto;
+}
+
 @media all and (max-width: 640px) {
     .main-container {
 	width: 95%;

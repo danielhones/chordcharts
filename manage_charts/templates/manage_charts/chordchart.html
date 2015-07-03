@@ -12,20 +12,20 @@
   </head>
 
   <body>
+    <div class="form-container">
+      <form action="" method="post" class="transpose-form pure-form">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Transpose" class="pure-button" id="transpose-button">
+      </form>
+    </div>
     <div class="header">
       <h1 class="title">{{ song.title }}</h1>
       {% if song.artist != "" %}
       <h2 class="artist">{{ song.artist }},&nbsp;</h2>
       {% endif %}
       <h2 class="album">{{ song.album }}</h2>
-      <br>
-      <div class="form-container">
-	<form action="" method="post" class="transpose-form pure-form">
-	  {% csrf_token %}
-	  {{ form }}
-	  <input type="submit" value="Transpose" class="pure-button" id="transpose-button">
-	</form>
-      </div>
+
     </div>
 
     <div class="chord-chart">
@@ -52,13 +52,18 @@
       
 	    {% endfor %}
 
-      </div>
+	</div>
 	{% endfor %}
 	      
 	{% endautoescape %}
+	<div "nav-links">
+	  <br>
+	  <a class="home-link" href="/">Home</a>
+	  <a class="edit-link" href="/edit/{{ song.pk }}/">Edit</a>
+	</div>
+      </div>
 
-    </div>
-    
+
 
   </body>
 </html>

@@ -1,0 +1,68 @@
+#edit-pane {
+    height: 100%;
+    width: 40%;
+    float: left;
+    padding: 1%;
+    border-right: 1px solid black;
+    overflow-x: hidden;
+}
+
+#preview-pane {
+    height: 100%;
+    width: 60%;
+    float: right;
+    padding: 1%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 1em;
+}
+
+.button-container {
+    display: flex;
+    flex: row nowrap;
+    justify-content: space-between;
+}
+
+.pure-button {
+    flow: space-between;
+}
+
+textarea {
+    font-family: "Deja Vu Sans Mono", "Droid Sans Mono", monospace;
+    width: 100%;
+    height: 20em;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+label {
+    display: inline-block;
+    font-size: 1.2em;
+    width: 19%;
+}
+
+label[for=id_plain_text] {
+    display: inline;
+    visibility: hidden;
+}
+
+input[type=text] {
+    display: inline-block;
+    width: 79%;
+}
+
+input[type=submit] {
+    
+}
+
+#submit-button {
+
+}
+
+.measure {
+	min-width: 33.33333%;
+	max-width: 33.33333%;
+}
+
+
+

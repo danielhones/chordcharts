@@ -43,6 +43,7 @@
     font-size: 60%;
     margin-right: 2em;
     padding: .5em;
+    margin-bottom: 0px;
     font-family: "DejaVu Sans Condensed", sans-serif;
 }
 
@@ -87,8 +88,8 @@
     display: flex;
     padding-left: 10px;
     margin: 10px 0px 10px 0px;
-    border-right: solid 3px;
-    border-color: #000000;
+    border-right: solid 2px;
+    border-left: solid 1px;
     flex: 1;
     -webkit-flex: 1;
 }    
@@ -121,6 +122,7 @@ to fit them all in a measure.  Especially for slash chords.
 	max-width: 50%;
     }
 }					  
+
 				   
 .chord {
     flex: row nowrap;
@@ -132,10 +134,18 @@ to fit them all in a measure.  Especially for slash chords.
 .double-barline {
     border-right: double thick;
     border-width: 8px;
+    border-left: 1px solid;
     border-color: #000000;
 }
 
+.edit-link {
+    position: absolute;
+    right: 1em;
+}
 
-
+.home-link {
+    position: absolute;
+    left: 1em;
+}
 
 
