@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'manage_charts',
-    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,11 +48,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # For some reason, this error started occuring with apparently no cause on June 28, 2015:
-    # running python manage.py runserver results in an error on any page request: 'No module named security'
-    # This also happens when trying to run my Crushed app.  No idea why it started abruptly
-    # TODO: Find a real fix for this!
-    #'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'chordcharts.urls'

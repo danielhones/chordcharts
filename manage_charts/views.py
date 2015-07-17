@@ -8,16 +8,27 @@ from collections import namedtuple
 
 
 # TODO: make edit and chordchart templates load/inherit the same template file to display chord chart
+# TODO: also consider making the edit form from its separate elements rather than build from a model,
+#       so that you can give textarea autofocus.  (Useful for example when auto updating the preview)
+
+
+CHART_EXAMPLE = '|D-7\t|G7\t|Cmaj7\t|.||'
 
 
 def home(request):
     context = {
         'song_list': list(ChordChart.objects.all()),
         }
-    return render(request, 'manage_charts/home.html', context) 
+    return render(request, 'manage_charts/home.html', context)
 
 def edit_chart(request, *args, **kwargs):
     if request.method == 'POST':
+        # TODO: It doesn't seem like there's much point in making the form a ChordChartForm, then
+        # checking if the form is valid.  There's nothing really to validate anyway. response.POST is
+        # a query dict that contains all the objects we need, it's the same as form.cleaned_data I think.
+        # Consider using form = request.POST instead.
+        #
+        # TODO: See if we need to do anything explicitly to prevent SQL injection
         form = ChordChartForm(request.POST)
         return_to_page = '/'
 
@@ -33,7 +44,7 @@ def edit_chart(request, *args, **kwargs):
                 song = ChordChart(**form.cleaned_data)
             if 'submit' in request.POST:
                 # Eventually, this will not directly alter the item in the database but rather
-                # send a "pull request" that will go for review before being saved.
+                # send a "pull request" that will go for review before being saved in the database
                 song.save()
                 return redirect('/%s/' % song.pk)
         if 'preview' in request.POST:
@@ -48,14 +59,12 @@ def edit_chart(request, *args, **kwargs):
 
     if 'song_id' in kwargs:
         song = ChordChart.objects.get(pk=kwargs['song_id'])
-        raw_chart = Song(song.plain_text)
     else:
-        song = ChordChart(title='',artist='',album='', plain_text='|Chords go here |')
-        raw_chart = ''
+        song = ChordChart(title='Example',artist='',album='', plain_text=CHART_EXAMPLE)
     context = {
         'form': ChordChartForm(instance=song),
         'song': song,
-        'chordchart': raw_chart,
+        'chordchart': Song(song.plain_text),
     }
     return render(request, 'manage_charts/edit.html', context)
 
