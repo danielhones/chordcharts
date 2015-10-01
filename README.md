@@ -8,7 +8,7 @@ Editing a chart on a laptop:
 <center>![chart_screenshot](screenshots/edit_screenshot.png)</center>
 
 Viewing a chart on a smartphone:
-<center>![chart_screenshot](screenshots/edit_screenshot.png)</center>
+<center>![chart_screenshot](screenshots/mobile_screenshot.png)</center>
 
 
 ### Dependencies 
