@@ -66,3 +66,25 @@ input[type=submit] {
 
 
 
+@media all and (max-width: 900px) {
+    .measure {
+	min-width: 50%;
+	max-width: 50%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .measure {
+	min-width: 50%;
+	max-width: 50%;
+    }
+
+    #edit-pane {
+	float: top;
+	overflow-y: scroll;
+    }
+    #preview-pane {
+	float: bottom;
+	overflow-x: hidden;
+    }
+}

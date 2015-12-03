@@ -116,7 +116,7 @@ to fit them all in a measure.  Especially for slash chords.
 	max-width: 33.33333%;
     }
 }
-@media all and (max-width: 480px) {
+@media all and (max-width: 600px) {
     .measure {
 	min-width: 50%;
 	max-width: 50%;
