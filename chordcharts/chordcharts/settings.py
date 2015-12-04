@@ -36,7 +36,7 @@ except:
 if DEBUG is False:
     ALLOWED_HOSTS = [
         '.goodchordcharts.com',
-        'chords.danielhones.com.',
+        '.danielhones.com.',
     ]
 else:
     ALLOWED_HOSTS = []
