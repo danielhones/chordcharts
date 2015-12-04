@@ -33,8 +33,13 @@ try:
 except:
     TEMPLATE_DEBUG = False
 
-
-ALLOWED_HOSTS = []
+if DEBUG is False:
+    ALLOWED_HOSTS = [
+        '.goodchordcharts.com',
+        'chords.danielhones.com.',
+    ]
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
