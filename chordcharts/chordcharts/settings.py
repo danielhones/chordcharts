@@ -22,8 +22,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'n(g$5mgd2u*#ozijll7ef%(n8)0$d4sp0j6(fz7*vu6j2+vgw8'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+try:
+    DEBUG = eval(os.environ['DJANGO_DEBUG'])
+except:
+    DEBUG = False
+
+try:
+    TEMPLATE_DEBUG = eval(os.environ['DJANGO_TEMPLATE_DEBUG'])
+except:
+    TEMPLATE_DEBUG = False
+
 
 ALLOWED_HOSTS = []
 
@@ -106,3 +115,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     '/var/www/static',
 )
+
+# Auth settings: 
+LOGIN_REDIRECT_URL = "/"

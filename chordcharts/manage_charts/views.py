@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, render_to_response
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import ChordChart
 from chords.chords import Song
@@ -15,12 +16,15 @@ from collections import namedtuple
 CHART_EXAMPLE = '|D-7\t|G7\t|Cmaj7\t|.||'
 
 
+@login_required
 def home(request):
     context = {
         'song_list': list(ChordChart.objects.all()),
         }
     return render(request, 'manage_charts/home.html', context)
 
+
+@login_required
 def edit_chart(request, *args, **kwargs):
     if request.method == 'POST':
         # TODO: It doesn't seem like there's much point in making the form a ChordChartForm, then
@@ -60,7 +64,7 @@ def edit_chart(request, *args, **kwargs):
     if 'song_id' in kwargs:
         song = ChordChart.objects.get(pk=kwargs['song_id'])
     else:
-        song = ChordChart(title='Example',artist='',album='', plain_text=CHART_EXAMPLE)
+        song = ChordChart(title='Example', artist='', album='', plain_text=CHART_EXAMPLE)
     context = {
         'form': ChordChartForm(instance=song),
         'song': song,
@@ -69,6 +73,7 @@ def edit_chart(request, *args, **kwargs):
     return render(request, 'manage_charts/edit.html', context)
 
 
+@login_required
 def show_chart(request, song_id):
     # TODO: fix the redundancy here. There's got to be a better way.
     song = ChordChart.objects.get(pk=song_id)
@@ -87,4 +92,3 @@ def show_chart(request, song_id):
             context['form'] = new_form
             return render(request, 'manage_charts/chordchart.html', context)
     return render(request, 'manage_charts/chordchart.html', context)
-
