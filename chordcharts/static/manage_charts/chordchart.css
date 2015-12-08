@@ -1,145 +1,137 @@
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none; }
+
+@font-face {
+  font-family: 'DejaVu Sans Condensed';
+  src: url("DejaVuSansCondensed-webfont.eot");
+  src: url("DejaVuSansCondensed-webfont.eot?#iefix") format("embedded-opentype"), url("DejaVuSansCondensed-webfont.woff") format("woff"), url("DejaVuSansCondensed-webfont.ttf") format("truetype"), url("DejaVuSansCondensed-webfont.svg#dejavu_sanscondensed") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 .header {
-    font-family: Georgia, Garamond, Times, "Times New Roman", serif;
-    font-size: 115%;
-    text-align: center;
-    margin-bottom: 30px;
-}
+  font-family: Georgia, Garamond, Times, "Times New Roman", serif;
+  font-size: 115%;
+  text-align: center;
+  margin-bottom: 30px; }
 
 .artist,
 .album {
-    display: inline-block;
-    margin-top: 0px;
-}
+  display: inline-block;
+  margin-top: 0px; }
 
 .album {
-    text-decoration: underline;
-}
+  text-decoration: underline; }
 
 .title {
-    text-decoration: underline;
-}
+  text-decoration: underline; }
 
 .form-container {
-    display: -webkit-flex;
-    display: flex;
-    flex: row;
-    -webkit-flex: row;
-    justify-content: flex-end;
-}
+  display: -webkit-flex;
+  display: flex;
+  flex: row;
+  -webkit-flex: row;
+  justify-content: flex-end; }
 
 .transpose-form {
-    display: -webkit-flex;
-    display: flex;
-    flex: row;
-    -webkit-flex: row;
-    justify-content: flex-end;
-    -webkit-justify-content: flex-end;
-    font-size: 60%;
-    margin-right: 2em;
-    padding: .5em;
-    margin-bottom: 0px;
-    font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
-}
+  display: -webkit-flex;
+  display: flex;
+  flex: row;
+  -webkit-flex: row;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  font-size: 60%;
+  margin-right: 2em;
+  padding: .5em;
+  margin-bottom: 0px;
+  font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif; }
 
 #id_semitones {
-    width: 4.5em;
-    flex: 0 1 auto;
-    -webkit-flex: 0 1 auto;
-}
+  width: 4.5em;
+  flex: 0 1 auto;
+  -webkit-flex: 0 1 auto; }
 
 #transpose-button {
-    flex: 0 1 auto;
-    -webkit-flex: 0 1 auto;
-}
+  flex: 0 1 auto;
+  -webkit-flex: 0 1 auto; }
 
 .chord-chart {
-    margin: auto;
-    width: 98%;
-}
+  margin: auto;
+  width: 98%; }
 
 .section-name {
-    color: white;
-    background: black;
-    padding-left: .5em;
-    padding-right: .5em;
-    margin-top: .4em;
-    margin-bottom: .4em;
-    font-size: 1.3em;
-    display: inline-block;
-}
+  color: white;
+  background: black;
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-top: .4em;
+  margin-bottom: .4em;
+  font-size: 1.3em;
+  display: inline-block; }
 
 .section {
-    display: -webkit-flex;
-    display: flex;
-    flex-flow: row wrap;
-    -webkit-flex-flow: row wrap;
-    font-size: 2.2em;
-    font-family: "DejaVu Sans Condensed",sans-serif;
-}
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  font-size: 2.2em;
+  font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif; }
 
+/*
+TODO: Consider setting min-width for .measure to a pixel width and see if the measures grow and wrap as they
+need to.  May not work with flex.
+*/
 .measure {
-    display: -webkit-flex;
-    display: flex;
-    padding-left: 10px;
-    margin: 10px 0px 10px 0px;
-    border-right: solid 2px;
-    border-left: solid 1px;
-    flex: 1;
-    -webkit-flex: 1;
-}
+  display: -webkit-flex;
+  display: flex;
+  padding-left: 10px;
+  margin: 10px 0px 10px 0px;
+  border-right: solid 2px;
+  border-left: solid 1px;
+  flex: 1;
+  -webkit-flex: 1; }
 
 /*
 When implementing 4 chords to a bar, it might be necessary to reduce the font size of the chords, in order
 to fit them all in a measure.  Especially for slash chords. 
 */
 @media all and (min-width: 1280px) {
-    .measure {
-	min-width: 16.66666%;
-	max-width: 16.66666%;
-    } 
-}
+  .measure {
+    min-width: 16.66666%;
+    max-width: 16.66666%; } }
 @media all and (max-width: 1280px) {
-    .measure {
-	min-width: 25%;
-	max-width: 25%;
-    }
-}
+  .measure {
+    min-width: 25%;
+    max-width: 25%; } }
 @media all and (max-width: 900px) {
-    .measure {
-	min-width: 33.33333%;
-	max-width: 33.33333%;
-    }
-}
+  .measure {
+    min-width: 33.33333%;
+    max-width: 33.33333%; } }
 @media all and (max-width: 600px) {
-    .measure {
-	min-width: 50%;
-	max-width: 50%;
-    }
-}					  
-
-				   
+  .measure {
+    min-width: 50%;
+    max-width: 50%; } }
 .chord {
-    flex: row nowrap;
-    -webkit-flex: row nowrap;
-    white-space: nowrap;
-    width: 50%;
-}
+  flex: row nowrap;
+  -webkit-flex: row nowrap;
+  white-space: nowrap;
+  width: 50%; }
 
 .double-barline {
-    border-right: double thick;
-    border-width: 8px;
-    border-left: 1px solid;
-    border-color: #000000;
-}
+  border-right: double thick;
+  border-width: 8px;
+  border-left: 1px solid;
+  border-color: #000000; }
 
 .edit-link {
-    position: absolute;
-    right: 1em;
-}
+  position: absolute;
+  right: 1em; }
 
 .home-link {
-    position: absolute;
-    left: 1em;
-}
+  position: absolute;
+  left: 1em; }
 
-
+/*# sourceMappingURL=chordchart.css.map */

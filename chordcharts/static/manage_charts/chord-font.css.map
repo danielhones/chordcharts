@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UASC;EARG,WAAW,EAAE,uBAAuB;EACpC,GAAG,EAAE,sCAAsC;EAC3C,GAAG,EAAE,uQAGyE;EAC9E,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,MAAM",
+"sources": ["chord-font.scss"],
+"names": [],
+"file": "chord-font.css"
+}

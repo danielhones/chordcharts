@@ -1,20 +1,9 @@
-@font-face {
-    font-family: 'DejaVu Sans Condensed';
-    src: url('DejaVuSansCondensed-webfont.eot');
-    src: url('DejaVuSansCondensed-webfont.eot?#iefix') format('embedded-opentype'),
-         url('DejaVuSansCondensed-webfont.woff') format('woff'),
-         url('DejaVuSansCondensed-webfont.ttf') format('truetype'),
-         url('DejaVuSansCondensed-webfont.svg#dejavu_sanscondensed') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 *, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 a {
-    text-decoration: none;
-}
+  text-decoration: none; }
+
+/*# sourceMappingURL=base-site.css.map */
