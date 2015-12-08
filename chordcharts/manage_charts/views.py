@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from .models import ChordChart
 from chords.chords import Song
@@ -24,7 +25,16 @@ def home(request):
     return render(request, 'manage_charts/home.html', context)
 
 
+@csrf_exempt
+def parse_plaintext(request, *args, **kwargs):
+    context = {
+        'chordchart': ChordChart(request.POST),
+    }
+    # TODO: Break out just the chord chart section (no title, etc) into it's own template
+    return render(request, 'manage_charts/chordchart.html', context)
 
+
+@login_required
 def edit_chart(request, *args, **kwargs):
     if request.method == 'POST':
         # TODO: It doesn't seem like there's much point in making the form a ChordChartForm, then
