@@ -31,8 +31,6 @@ def edit_chart(request, *args, **kwargs):
         # checking if the form is valid.  There's nothing really to validate anyway. response.POST is
         # a query dict that contains all the objects we need, it's the same as form.cleaned_data I think.
         # Consider using form = request.POST instead.
-        #
-        # TODO: See if we need to do anything explicitly to prevent SQL injection
         form = ChordChartForm(request.POST)
         return_to_page = '/'
 

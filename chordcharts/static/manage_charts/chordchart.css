@@ -1,11 +1,5 @@
-*, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 .header {
-    font-family: 'Lora', serif;
+    font-family: Georgia, Garamond, Times, "Times New Roman", serif;
     font-size: 115%;
     text-align: center;
     margin-bottom: 30px;
@@ -44,7 +38,7 @@
     margin-right: 2em;
     padding: .5em;
     margin-bottom: 0px;
-    font-family: "DejaVu Sans Condensed", sans-serif;
+    font-family: "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
 }
 
 #id_semitones {
@@ -92,7 +86,7 @@
     border-left: solid 1px;
     flex: 1;
     -webkit-flex: 1;
-}    
+}
 
 /*
 When implementing 4 chords to a bar, it might be necessary to reduce the font size of the chords, in order
