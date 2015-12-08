@@ -24,7 +24,7 @@ def home(request):
     return render(request, 'manage_charts/home.html', context)
 
 
-@login_required
+
 def edit_chart(request, *args, **kwargs):
     if request.method == 'POST':
         # TODO: It doesn't seem like there's much point in making the form a ChordChartForm, then
