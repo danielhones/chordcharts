@@ -1,3 +1,8 @@
+/*
+TODO: Write style rules for print media.  To get it to print right, it might be necessary to not use flex and
+just set measures at 25% width and maybe place them within a grid
+*/
+
 @import 'base-site';
 @import 'chord-font';
 
@@ -80,10 +85,6 @@
     font-family: $chordfont-stack;
 }
 
-/*
-TODO: Consider setting min-width for .measure to a pixel width and see if the measures grow and wrap as they
-need to.  May not work with flex.
-*/
 .measure {
     display: -webkit-flex;
     display: flex;
@@ -98,6 +99,10 @@ need to.  May not work with flex.
 /*
 When implementing 4 chords to a bar, it might be necessary to reduce the font size of the chords, in order
 to fit them all in a measure.  Especially for slash chords. 
+*/
+/*
+TODO: These media queries should ideally be getting the min-width of the container div that holds the chart.
+See if that's possible.  Then we wouldn't need to redefine these rules in edit-form.css
 */
 @media all and (min-width: 1280px) {
     .measure {
@@ -124,7 +129,6 @@ to fit them all in a measure.  Especially for slash chords.
     }
 }					  
 
-				   
 .chord {
     flex: row nowrap;
     -webkit-flex: row nowrap;

@@ -1,6 +1,6 @@
 #edit-pane {
     height: 100%;
-    width: 40%;
+    width: 33%;
     float: left;
     padding: 1%;
     border-right: 1px solid black;
@@ -9,7 +9,7 @@
 
 #preview-pane {
     height: 100%;
-    width: 60%;
+    width: 67%;
     float: right;
     padding: 1%;
     overflow-y: scroll;
@@ -32,7 +32,8 @@ textarea {
     width: 100%;
     height: 20em;
     overflow: auto;
-    white-space: nowrap;
+    resize: vertical;
+    whitespace: nowrap;
 }
 
 label {
@@ -64,27 +65,28 @@ input[type=submit] {
 	max-width: 33.33333%;
 }
 
+@media all and (max-width: 800px) {
+    #edit-pane {
+	float: top;
+	height: 50%;
+	width: 100%;
+	overflow-y: scroll;
+	border: none;
+	border-bottom: thin black solid;
+    }
+    
+    #preview-pane {
 
-
-@media all and (max-width: 900px) {
-    .measure {
-	min-width: 50%;
-	max-width: 50%;
+	float: bottom;
+	height: 50%;
+	width: 100%;
+	overflow-y: scroll;
     }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 640px) {
     .measure {
 	min-width: 50%;
 	max-width: 50%;
-    }
-
-    #edit-pane {
-	float: top;
-	overflow-y: scroll;
-    }
-    #preview-pane {
-	float: bottom;
-	overflow-x: hidden;
     }
 }

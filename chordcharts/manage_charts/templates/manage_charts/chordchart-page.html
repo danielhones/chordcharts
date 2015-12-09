@@ -1,0 +1,34 @@
+{% load staticfiles %}
+{% comment %}
+TODO: Have Django insert CSS as an internal stylesheet so that charts are save-able and printable as a single file
+TODO: Pick out only the parts of pure.css that I actually use (project-wide), make it it's own SCSS partial and import
+it in base-site.scss
+TODO: And in general, minify all CSS
+{% endcomment %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static "pure-min.css" %}">
+    <link rel="stylesheet" href="{% static "manage_charts/chordchart.css" %}">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>{{ song.title }}</title>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <form action="" method="post" class="transpose-form pure-form">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Transpose" class="pure-button" id="transpose-button">
+      </form>
+    </div>
+
+    {% include "manage_charts/chordchart.html" %}
+    
+    <div "nav-links">
+      <br>
+      <a class="home-link" href="/">Home</a>
+      <a class="edit-link" href="/edit/{{ song.pk }}/">Edit</a>
+    </div>
+    
+  </body>
+</html>

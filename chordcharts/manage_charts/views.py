@@ -25,13 +25,26 @@ def home(request):
     return render(request, 'manage_charts/home.html', context)
 
 
+# TODO: a class based method for this might look cleaner
 @csrf_exempt
 def parse_plaintext(request, *args, **kwargs):
-    context = {
-        'chordchart': ChordChart(request.POST),
-    }
-    # TODO: Break out just the chord chart section (no title, etc) into it's own template
-    return render(request, 'manage_charts/chordchart.html', context)
+    if request.method == 'POST':
+        # TODO: Clean this up, SONG_ATTRS doesn't belong here.  It should be in either ChordChart model
+        # or the Song class in chords.py:
+        SONG_ATTRS = ('title', 'artist', 'album')
+        song = {}
+        for field in SONG_ATTRS:
+            try:
+                song[field] = request.POST[field]
+            except KeyError:
+                pass
+        context = {
+            'song': song,
+            'chordchart': Song(request.POST['plain_text'])
+        }
+        return render(request, 'manage_charts/chordchart.html', context)
+    else:
+        return HttpResponse('POST a plaintext chart to this url to be parsed')
 
 
 @login_required
@@ -98,5 +111,4 @@ def show_chart(request, song_id):
             new_form = TransposeForm(initial={'semitones': semitones})
             context['chordchart'] = raw_chart.transpose(semitones)
             context['form'] = new_form
-            return render(request, 'manage_charts/chordchart.html', context)
-    return render(request, 'manage_charts/chordchart.html', context)
+    return render(request, 'manage_charts/chordchart-page.html', context)

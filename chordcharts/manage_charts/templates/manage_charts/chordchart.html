@@ -1,71 +1,40 @@
-{% load staticfiles %}
-{% comment %}
-TODO: Have Django insert CSS as an internal stylesheet so that charts are save-able and printable as a single file
-TODO: Pick out only the parts of pure.css that I actually use (project-wide), make it it's own SCSS partial and import
-it in base-site.scss
-TODO: And in general, minify all CSS
-{% endcomment %}
-<html>
-  <head>
-    <link rel="stylesheet" href="{% static "pure-min.css" %}">
-    <link rel="stylesheet" href="{% static "manage_charts/chordchart.css" %}">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>{{ song.title }}</title>
-  </head>
+{% if song %}
+<div class="header">
+  <h1 class="title">{{ song.title }}</h1>
+  {% if song.artist != "" %}
+  <h2 class="artist">{{ song.artist }}{% if song.album != "" %},&nbsp;{% endif %}</h2>
+  {% endif %}
+  <h2 class="album">{{ song.album }}</h2>
+</div>
+{% endif %}
 
-  <body>
-    <div class="form-container">
-      <form action="" method="post" class="transpose-form pure-form">
-	{% csrf_token %}
-	{{ form }}
-	<input type="submit" value="Transpose" class="pure-button" id="transpose-button">
-      </form>
-    </div>
-    <div class="header">
-      <h1 class="title">{{ song.title }}</h1>
-      {% if song.artist != "" %}
-      <h2 class="artist">{{ song.artist }},&nbsp;</h2>
-      {% endif %}
-      <h2 class="album">{{ song.album }}</h2>
-
-    </div>
-
-    <div class="chord-chart">
-      {% autoescape off %}
-
-	{% for section in chordchart.sections %}
-      <h3 class="section-name">{{ section.section_name }}</h3>
-      <div class="section">
-	{% for measure in section.measures %}
-	{% if measure.double_barline %}
-	<div class="measure double-barline">
-	{% else %}
-	<div class="measure">{% endif %}
-	  {% for chord in measure.chords %}
-	  <div class="chord">
-	    {% if chord.slashnote %}
-	    <sup>{{chord.rootnote}}<sup>{{chord.quality}}</sup></sup>/<sub>{{chord.slashnote}}</sub>
-	      {% else %}{{chord.rootnote}}<sup>{{chord.quality}}</sup>
-	      {% endif %}
-	  </div>
-	    
-	    {% endfor %}
+<div class="chord-chart">
+  {% autoescape off %}
+  
+  {% for section in chordchart.sections %}
+  <h3 class="section-name">{{ section.section_name }}</h3>
+  <div class="section">
+    {% for measure in section.measures %}
+    {% if measure.double_barline %}
+    <div class="measure double-barline">
+      {% else %}
+      <div class="measure">{% endif %}
+	{% for chord in measure.chords %}
+	<div class="chord">
+	  {% if chord.slashnote %}
+	  <sup>{{chord.rootnote}}<sup>{{chord.quality}}</sup></sup>/<sub>{{chord.slashnote}}</sub>
+	  {% else %}{{chord.rootnote}}<sup>{{chord.quality}}</sup>
+	  {% endif %}
 	</div>
-      
-	    {% endfor %}
-
-	</div>
+	
 	{% endfor %}
-	      
-	{% endautoescape %}
-	<div "nav-links">
-	  <br>
-	  <a class="home-link" href="/">Home</a>
-	  <a class="edit-link" href="/edit/{{ song.pk }}/">Edit</a>
-	</div>
       </div>
-
-
-
-  </body>
-</html>
+      
+      {% endfor %}
+      
+    </div>
+    {% endfor %}
+    
+    {% endautoescape %}
+  </div>
+</div>
