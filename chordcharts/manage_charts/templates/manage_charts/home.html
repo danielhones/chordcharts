@@ -17,13 +17,9 @@
 
       <ul class="song-list">
 	{% for song in song_list %}
-	<li class="song-item"><a href="{{song.id}}">"{{song.title}}"
-	    {% if song.artist != "" %}
-	    - {{song.artist}}
-	    {% endif %}
-	    {% if song.album != "" %}
-	    , {{song.album}}
-	    {% endif %}
+	<li class="song-item"><a href="{{song.id}}">{{song.title}}
+	  {% if song.artist != "" %} - 
+	  {{song.artist}}{% endif %}{% if song.album != "" %}, {{song.album}}{% endif %}
 	  </a>
 	</li>
       

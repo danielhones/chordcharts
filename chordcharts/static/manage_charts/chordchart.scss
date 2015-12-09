@@ -1,10 +1,13 @@
 /*
 TODO: Write style rules for print media.  To get it to print right, it might be necessary to not use flex and
 just set measures at 25% width and maybe place them within a grid
+
+TODO: Set font size sensibly, and make it smaller for mobile/narrow widths
 */
 
 @import 'base-site';
 @import 'chord-font';
+
 
 .header {
     font-family: Georgia, Garamond, Times, "Times New Roman", serif;

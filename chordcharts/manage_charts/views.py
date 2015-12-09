@@ -4,14 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from .models import ChordChart
 from chords.chords import Song
-from django.conf import settings
 from .forms import TransposeForm, ChordChartForm
-from collections import namedtuple
-
-
-# TODO: make edit and chordchart templates load/inherit the same template file to display chord chart
-# TODO: also consider making the edit form from its separate elements rather than build from a model,
-#       so that you can give textarea autofocus.  (Useful for example when auto updating the preview)
 
 
 CHART_EXAMPLE = '|D-7\t|G7\t|Cmaj7\t|.||'
@@ -19,18 +12,21 @@ CHART_EXAMPLE = '|D-7\t|G7\t|Cmaj7\t|.||'
 
 @login_required
 def home(request):
+    # TODO: Make this an actually usable web page, including search (maybe with autocomplete) and maybe
+    # make the complete list of songs its own web page (or pages eventually)
     context = {
         'song_list': list(ChordChart.objects.all()),
         }
     return render(request, 'manage_charts/home.html', context)
 
 
-# TODO: a class based method for this might look cleaner
+# TODO: a class based method for parse_plaintext might look cleaner
 @csrf_exempt
 def parse_plaintext(request, *args, **kwargs):
     if request.method == 'POST':
         # TODO: Clean this up, SONG_ATTRS doesn't belong here.  It should be in either ChordChart model
         # or the Song class in chords.py:
+        # TODO: Should we bother validating the form here?
         SONG_ATTRS = ('title', 'artist', 'album')
         song = {}
         for field in SONG_ATTRS:
@@ -38,49 +34,46 @@ def parse_plaintext(request, *args, **kwargs):
                 song[field] = request.POST[field]
             except KeyError:
                 pass
+
+        # TODO: Add a ChartParseError or something in the chords module and catch it here so we can respond
+        # with an error when needed.
+        chordchart = Song(request.POST['plain_text'])
         context = {
             'song': song,
-            'chordchart': Song(request.POST['plain_text'])
+            'chordchart': chordchart
         }
         return render(request, 'manage_charts/chordchart.html', context)
     else:
         return HttpResponse('POST a plaintext chart to this url to be parsed')
 
 
+# TODO: A class-based view for edit_chart might be cleaner too
 @login_required
 def edit_chart(request, *args, **kwargs):
-    if request.method == 'POST':
-        # TODO: It doesn't seem like there's much point in making the form a ChordChartForm, then
-        # checking if the form is valid.  There's nothing really to validate anyway. response.POST is
-        # a query dict that contains all the objects we need, it's the same as form.cleaned_data I think.
-        # Consider using form = request.POST instead.
-        form = ChordChartForm(request.POST)
-        return_to_page = '/'
+    song_page = '/%s/' % str(kwargs['song_id'])
 
-        if form.is_valid():
+    if request.method == 'POST':
+        form = ChordChartForm(request.POST)
+
+        if 'cancel' in request.POST:
+            return redirect(song_page)
+        elif form.is_valid():
             if 'song_id' in kwargs:
                 song = ChordChart.objects.get(pk=kwargs['song_id'])
                 song.plain_text = form.cleaned_data['plain_text']
                 song.title = form.cleaned_data['title']
                 song.artist = form.cleaned_data['artist']
                 song.album = form.cleaned_data['album']
-                return_to_page = '/' + str(song.pk)
             else:
                 song = ChordChart(**form.cleaned_data)
-            if 'submit' in request.POST:
+            if 'save' in request.POST:
                 # Eventually, this will not directly alter the item in the database but rather
                 # send a "pull request" that will go for review before being saved in the database
                 song.save()
                 return redirect('/%s/' % song.pk)
-        if 'preview' in request.POST:
-            context = {
-                'form': ChordChartForm(instance=song),
-                'song': song,
-                'chordchart': Song(song.plain_text),
-            }
-            return render(request, 'manage_charts/edit.html', context)
-        elif 'cancel' in request.POST:
-            return redirect(return_to_page)
+        else:
+            # Something unexpected happen, stay on edit page
+            return redirect('/edit' + song_page)
 
     if 'song_id' in kwargs:
         song = ChordChart.objects.get(pk=kwargs['song_id'])

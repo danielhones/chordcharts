@@ -4,6 +4,11 @@
   box-sizing: border-box; }
 
 a {
-  text-decoration: none; }
+    text-decoration: none;
+}
+
+.underline {
+    text-decoration: underline;
+}
 
 /*# sourceMappingURL=base-site.css.map */
