@@ -2,13 +2,13 @@
 Django webapp that keeps a database of chord charts and displays them nicely and legibly.
 
 Viewing a chart on a laptop:
-<center>![chart_screenshot](screenshots/chart_screenshot.png)</center>
+![chart_screenshot](screenshots/chart_screenshot.png)
 
 Editing a chart on a laptop:
-<center>![chart_screenshot](screenshots/edit_screenshot.png)</center>
+![chart_screenshot](screenshots/edit_screenshot.png)
 
 Viewing a chart on a smartphone:
-<center>![chart_screenshot](screenshots/mobile_screenshot.png)</center>
+![chart_screenshot](screenshots/mobile_screenshot.png)
 
 
 ### Dependencies 
